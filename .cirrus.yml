@@ -15,10 +15,9 @@ windows_task:
     CMAKE_PREFIX_PATH: C:\Qt\5.9.5\msvc2017_64
     CIRRUS_WORKING_DIR: D:\
 
-  build_script:
-    matrix:
-      - .\CI\Windows\build.bat
-      - .\CI\Windows\build.bat -DSYNERGY_ENTERPIRSE=ON
+  matrix:
+    build_script: .\CI\Windows\build.bat
+    build_script: .\CI\Windows\build.bat -DSYNERGY_ENTERPIRSE=ON
 
 ubuntu1604_task:
   use_compute_credits: true
