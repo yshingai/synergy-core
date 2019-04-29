@@ -2,5 +2,5 @@ pwd
 ls -la
 mkdir build 
 cd build
-cmake ..
+cmake $1 ..
 make
