@@ -16,9 +16,9 @@ windows_task:
     CIRRUS_WORKING_DIR: D:\
 
   build_script:
-	matrix:
-	  - .\CI\Windows\build.bat
-	  - .\CI\Windows\build.bat -DSYNERGY_ENTERPIRSE=ON
+    matrix:
+      - .\CI\Windows\build.bat
+      - .\CI\Windows\build.bat -DSYNERGY_ENTERPIRSE=ON
 
 ubuntu1604_task:
   use_compute_credits: true
