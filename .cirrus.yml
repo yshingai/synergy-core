@@ -1,11 +1,13 @@
 aws_credentials: ENCRYPTED[584f21ede7c8ceaeaf444a4ecd9007ba26a0c2d329ac2a321eb17193cb4df106d5a54f4555d616cb06583eb1f637f0d5]
 
-windows_desk_aws_task:
+linux_aws_task:
   ec2_instance:
-    image: ami-0f6c1f1dc0dfda8ad
-    platform: windows
+    image: ami-01ec3380fa02179ac
+    platform: linux
     type: m5d.4xlarge
     region: us-east-1  
-
-  build_script:
-    - .\CI\Windows\build.bat
+  build_script: 
+    - pwd; ls -la
+    - chmod +x ./CI/build.sh
+    - ./CI/build.sh
+ 
