@@ -1298,7 +1298,7 @@ XWindowsUtil::getWindowProperty(Display* display, Window window,
                 SInt32* format, bool deleteProperty)
 {
     assert(display != NULL);
-
+    return false; // THIS IS A TEST 
     Atom actualType;
     int actualDatumSize;
 
