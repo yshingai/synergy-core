@@ -904,7 +904,9 @@ KeyMap::keysForModifierState(KeyButton button, SInt32 group,
         if (keyItem == nullptr) {
             if ((mask & notRequiredMask) == 0) {
                 LOG((CLOG_DEBUG1 "no key for modifier %04x", mask));
-                return false;
+				// continue as if no such modifier is required
+				notRequiredMask &= ~mask;
+				continue;
             }
             
                 continue;

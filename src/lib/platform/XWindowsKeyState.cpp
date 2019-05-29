@@ -647,27 +647,30 @@ XWindowsKeyState::updateKeysymMapXKB(synergy::KeyMap& keyMap)
                 // modifier masks.
                 item.m_lock         = false;
                 bool isModifier     = false;
-                UInt32 modifierMask = m_xkb->map->modmap[keycode];
-                if (XkbKeyHasActions(m_xkb, keycode) == True) {
-                    XkbAction* action =
-                        XkbKeyActionEntry(m_xkb, keycode, level, eGroup);
-                    if (action->type == XkbSA_SetMods ||
-                        action->type == XkbSA_LockMods) {
-                        isModifier  = true;
+                UInt32 modifierMask = 0;
+                if (m_xkb->map && m_xkb->map->modmap) {
+                    modifierMask = m_xkb->map->modmap[keycode];
+                    if (XkbKeyHasActions(m_xkb, keycode) == True) {
+                        XkbAction* action =
+                            XkbKeyActionEntry(m_xkb, keycode, level, eGroup);
+                        if (action->type == XkbSA_SetMods ||
+                            action->type == XkbSA_LockMods) {
+                            isModifier  = true;
 
-                        // note toggles
-                        item.m_lock = (action->type == XkbSA_LockMods);
+                            // note toggles
+                            item.m_lock = (action->type == XkbSA_LockMods);
 
-                        // maybe use action's mask
-                        if ((action->mods.flags & XkbSA_UseModMapMods) == 0) {
-                            modifierMask = action->mods.mask;
+                            // maybe use action's mask
+                            if ((action->mods.flags & XkbSA_UseModMapMods) == 0) {
+                                modifierMask = action->mods.mask;
+                            }
                         }
-                    }
-                    else if (action->type == XkbSA_SetGroup ||
-                            action->type == XkbSA_LatchGroup ||
-                            action->type == XkbSA_LockGroup) {
-                        // ignore group change key
-                        continue;
+                        else if (action->type == XkbSA_SetGroup ||
+                                action->type == XkbSA_LatchGroup ||
+                                action->type == XkbSA_LockGroup) {
+                            // ignore group change key
+                            continue;
+                        }
                     }
                 }
                 level = mapEntry->level;
