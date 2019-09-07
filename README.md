@@ -2,6 +2,9 @@
 
 This is the open source core component of Synergy, a keyboard and mouse sharing tool.
 
+https://github.com/symless/synergy-core/issues/4152
+VMWare CTRL Key
+
 ## Recommended
 
 Things most people will need.
